@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--背景类-->
+    <!--纯黑色-->
+    <color name="color_black">#FF000000</color>
+    <!--纯白色-->
+    <color name="color_white">#FFFFFFFF</color>
+    <!--透明颜色-->
+    <color name="color_transparent">#00000000</color>
+    <!--状态栏颜色-->
+    <color name="color_state_bar">#067ce4</color>
+    <!--灰色背景-->
+    <color name="color_gray_bg">#f0f4f7</color>
+    <!--灰色分割线颜色-->
+    <color name="color_parting_line">#e9e9e9</color>
+
+
+    <!--字体类-->
+    <!--黑色字体颜色-->
+    <color name="color_black_text">#31333f</color>
+    <!--提示性字体颜色-->
+    <color name="color_hint_text">#789CC7</color>
+    <!--红色字体颜色-->
+    <color name="color_read_text">#ff6262</color>
+    <!--列表之中带点暗灰色+蓝色的字体  什么鬼  一般用在了list条目中的-->
+    <color name="color_list_text">#275580</color>
+    <!--运营商协议同意这种文字的颜色-->
+    <color name="color_green_text">#00b64d</color>
+    <!--淡蓝色字体文字-提示性文字-->
+    <color name="color_hint_blue_text">#8ea8c1</color>
+    <!--提示框确认按钮-->
+    <color name="color_confirm">#8ea8c1</color>
+    <!--提示框取消按钮-->
+    <color name="color_cancle">#FF000000</color>
+    <!--优惠券的颜色-->
+    <color name="color_coupon_text">#FF4E07</color>
+
+    <!--评论引导窗颜色-->
+    <color name="guide_comment_line">#ffe5e5e5</color>
+</resources>
