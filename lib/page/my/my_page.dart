@@ -45,15 +45,15 @@ class MyPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           MyItemList(
-            name: Strings.getString(Ids.my_item_1),
+            name: S.of(context).my_item_1,
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
-              Fluttertoast.showToast(msg: Strings.getString(Ids.my_item_1));
+              Fluttertoast.showToast(msg: S.of(context).my_item_1);
             },
           ),
           UnderLine(),
           MyItemList(
-            name: Strings.getString(Ids.my_item_1),
+            name: S.of(context).my_item_2,
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
 //              Fluttertoast.showToast(msg: Strings.my_item_1);
@@ -65,18 +65,18 @@ class MyPage extends StatelessWidget {
           ),
           UnderLine(),
           MyItemList(
-            name: Strings.getString(Ids.my_item_3),
+            name: S.of(context).my_item_3,
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
-              Fluttertoast.showToast(msg: Strings.getString(Ids.my_item_3));
+              Fluttertoast.showToast(msg: S.of(context).my_item_3);
             },
           ),
           UnderLine(),
           MyItemList(
-            name: Strings.getString(Ids.my_item_4),
+            name: S.of(context).my_item_4,
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
-              Fluttertoast.showToast(msg: Strings.getString(Ids.my_item_4));
+              Fluttertoast.showToast(msg: S.of(context).my_item_4);
             },
           ),
           UnderLine(),

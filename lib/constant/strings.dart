@@ -13,14 +13,17 @@ class Strings {
   }
 
   static String getString(String ids) {
+    String _word;
     if (languageCode == null) {
       SharedPreferences.getInstance().then((instance) {
         languageCode = instance.getString(SpKey.keyLanguage);
-        return localizedSimpleValues[languageCode][ids];
       });
-    } else {
-      return localizedSimpleValues[languageCode][ids];
     }
+    return localizedSimpleValues[languageCode][ids];
+  }
+
+  static Future<String> getWord(String ids, String languageCode) async {
+    return await localizedSimpleValues[languageCode][ids];
   }
 }
 

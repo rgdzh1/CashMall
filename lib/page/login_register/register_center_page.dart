@@ -17,7 +17,7 @@ class RegisterCenterPage extends StatelessWidget {
           },
         ),
         title: TitleText(
-          title: Strings.getString(Ids.register),
+          title: S.of(context).register,
         ),
         backgroundColor: MyColors.white,
       ),
@@ -38,7 +38,7 @@ class RegisterCenterPage extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(40))),
               SubmitButton(
-                desc: Strings.getString(Ids.btn_facebook_sms),
+                desc: S.of(context).btn_facebook_sms,
                 callback: () {
                   Application.router.navigateTo(
                     context,
@@ -61,7 +61,7 @@ class RegisterCenterPage extends StatelessWidget {
                       color: MyColors.fontColor,
                     ),
                     Text(
-                      Strings.getString(Ids.desc_try_other_way),
+                      S.of(context).desc_try_other_way,
                       style: TextStyle(
                           color: MyColors.fontColor,
                           fontSize: ScreenUtil().setSp(DimentSize.desc_size)),
@@ -85,7 +85,7 @@ class RegisterCenterPage extends StatelessWidget {
                   splashColor: MyColors.transparency_white,
                   elevation: 0.8,
                   child: Text(
-                    Strings.getString(Ids.try_way),
+                    S.of(context).try_way,
                     style: TextStyle(
                         color: MyColors.fontColor,
                         fontSize: ScreenUtil().setSp(DimentSize.title_size)),

@@ -17,7 +17,7 @@ class ChangeAccountPasswordPage extends StatelessWidget {
           },
         ),
         title: TitleText(
-          title: Strings.getString(Ids.change_password),
+          title: S.of(context).change_password,
         ),
         backgroundColor: MyColors.white,
       ),
@@ -54,7 +54,7 @@ class ChangeAccountPasswordPage extends StatelessWidget {
                       decoration: InputDecoration(
                         fillColor: MyColors.white,
                         filled: true,
-                        labelText: Strings.getString(Ids.hint_input_account),
+                        labelText: S.of(context).hint_input_account,
                         labelStyle: TextStyle(
                           fontSize: ScreenUtil().setSp(DimentSize.desc_size),
                         ),
@@ -67,7 +67,7 @@ class ChangeAccountPasswordPage extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
               SubmitButton(
-                desc: Strings.getString(Ids.next),
+                desc: S.of(context).next,
                 callback: () {
                   Application.router.navigateTo(
                     context,

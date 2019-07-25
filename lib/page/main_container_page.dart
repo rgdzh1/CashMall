@@ -90,7 +90,7 @@ class MainContainer extends StatelessWidget {
           size: ScreenUtil().setWidth(44.0),
         ),
         title: Text(
-          Strings.getString(Ids.home),
+          S.of(context).home,
           style: TextStyle(
             fontSize: ScreenUtil().setSp(20.0),
           ),
@@ -102,7 +102,7 @@ class MainContainer extends StatelessWidget {
           size: ScreenUtil().setWidth(44.0),
         ),
         title: Text(
-          Strings.getString(Ids.my),
+          S.of(context).my,
           style: TextStyle(
             fontSize: ScreenUtil().setWidth(20.0),
           ),
@@ -120,35 +120,37 @@ class MainContainer extends StatelessWidget {
 
   //记录导航点击事件得index
   static final Counter counter = new Counter();
-
   @override
   Widget build(BuildContext context) {
 //    print("看看计数器" + counter.count.toString());
     ScreenUtil.instance = ScreenUtil(width: 750.0, height: 1334.0)
       ..init(context);
-    return ChangeNotifierProvider<Counter>.value(
-      value: counter,
-      child: Consumer<Counter>(
-        builder: (BuildContext context, Counter counter, _) => Scaffold(
-          backgroundColor: Colors.white,
-          bottomNavigationBar: SizedBox(
-            height: ScreenUtil().setHeight(108),
-            width: ScreenUtil().setWidth(750),
-            child: BottomNavigationBar(
-              selectedItemColor: MyColors.primary,
-              unselectedItemColor: MyColors.fontColor,
-              items: _getTabs(context),
-              type: BottomNavigationBarType.fixed,
-              currentIndex: counter.count,
-              onTap: (int index) {
-                counter.selectCount(index);
-              },
-            ),
-          ),
-          body: IndexedStack(
-            index: counter.count,
-            children: _getPages(),
-          ),
+    return Scaffold(
+      body: ChangeNotifierProvider<Counter>.value(
+        value: counter,
+        child: Consumer<Counter>(
+          builder: (BuildContext context, Counter counter, _) =>
+              Scaffold(
+                backgroundColor: Colors.white,
+                bottomNavigationBar: SizedBox(
+                  height: ScreenUtil().setHeight(108),
+                  width: ScreenUtil().setWidth(750),
+                  child: BottomNavigationBar(
+                    selectedItemColor: MyColors.primary,
+                    unselectedItemColor: MyColors.fontColor,
+                    items: _getTabs(context),
+                    type: BottomNavigationBarType.fixed,
+                    currentIndex: counter.count,
+                    onTap: (int index) {
+                      counter.selectCount(index);
+                    },
+                  ),
+                ),
+                body: IndexedStack(
+                  index: counter.count,
+                  children: _getPages(),
+                ),
+              ),
         ),
       ),
     );

@@ -12,7 +12,7 @@
     -->
     <application
         android:name=".MyApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="CashMall">
         <activity
             android:name=".MainActivity"

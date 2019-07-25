@@ -17,7 +17,7 @@ class RegisterPasswordPage extends StatelessWidget {
           },
         ),
         title: TitleText(
-          title: Strings.getString(Ids.register),
+          title: S.of(context).register,
         ),
         backgroundColor: MyColors.white,
       ),
@@ -39,7 +39,7 @@ class RegisterPasswordPage extends StatelessWidget {
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(30))),
               Text(
                 //设置密码提示语
-                Strings.getString(Ids.hint_input_password),
+                S.of(context).hint_input_password,
                 style: TextStyle(
                   color: MyColors.fontColor,
                   fontSize: ScreenUtil().setSp(DimentSize.desc_size),
@@ -76,7 +76,7 @@ class RegisterPasswordPage extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
               SubmitButton(
-                desc: Strings.getString(Ids.confirm),
+                desc: S.of(context).confirm,
                 callback: () {
                   Fluttertoast.showToast(msg: "去Facebook 获取短信");
                 },

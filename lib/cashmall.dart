@@ -12,12 +12,13 @@ export 'package:flutter_boost/flutter_boost.dart';
 export 'package:flutter/gestures.dart';
 export 'dart:async';
 export 'package:flutter/services.dart';
+export 'generated/i18n.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';
 
 //export 'package:flutter_localizations/flutter_localizations.dart';
 //export 'package:fluintl/fluintl.dart';
 //provider
 export 'provid/counter.dart';
-export 'provid/locale_provider.dart';
 
 //page
 export 'package:CashMall/page/home_page.dart';
@@ -42,7 +43,6 @@ export 'package:CashMall/provid/bool_provider.dart';
 
 //constant
 export 'package:CashMall/constant/native_path.dart';
-export 'package:CashMall/constant/strings.dart';
 export 'package:CashMall/constant/colors.dart';
 export 'package:CashMall/constant/sp_key.dart';
 export 'package:CashMall/constant/dimen.dart';
@@ -57,8 +57,6 @@ export 'package:CashMall/config/route/routes.dart';
 
 //bean
 export 'package:CashMall/bean/home_bean.dart';
-export 'package:CashMall/bean/language_models.dart';
-
 
 //tools
 export 'package:CashMall/tools/screen_tools.dart';

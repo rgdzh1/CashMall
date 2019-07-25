@@ -8,7 +8,7 @@ class AboutUs extends StatelessWidget {
         backgroundColor: MyColors.white,
         centerTitle: true,
         title: TitleText(
-          title: Strings.getString(Ids.about_us_title),
+          title: S.of(context).about_us_title,
         ),
         leading: InkWell(
           onTap: () {
@@ -48,7 +48,7 @@ class AboutUs extends StatelessWidget {
               height: ScreenUtil().setHeight(1013),
             ),
             child: Text(
-              Strings.getString(Ids.about_us_desc),
+              S.of(context).about_us_desc,
               style: TextStyle(
                 fontSize: ScreenUtil().setSp(26),
                 color: MyColors.fontColor,

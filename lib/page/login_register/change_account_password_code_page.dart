@@ -23,11 +23,12 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
   }
 
   int count = 60;
-  String getCodeDesc = Strings.getString(Ids.get_sms_code);
+  String getCodeDesc;
   var timerSmsCode;
 
   @override
   Widget build(BuildContext context) {
+    getCodeDesc = S.of(context).get_sms_code;
     return Scaffold(
       appBar: AppBar(
         elevation: 0.5,
@@ -42,7 +43,7 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
           },
         ),
         title: TitleText(
-          title: Strings.getString(Ids.change_password),
+          title: S.of(context).change_password,
         ),
         backgroundColor: MyColors.white,
       ),
@@ -82,7 +83,7 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
                               if (count == 0) {
                                 count = 60;
                                 getCodeDesc =
-                                    Strings.getString(Ids.get_sms_code);
+                                    S.of(context).get_sms_code;
                                 boolProvider.setStat(false);
                                 timer.cancel();
                               }
@@ -115,7 +116,7 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
               SubmitButton(
-                desc: Strings.getString(Ids.next),
+                desc: S.of(context).next,
                 callback: () {
                   Application.router.navigateTo(
                     context,

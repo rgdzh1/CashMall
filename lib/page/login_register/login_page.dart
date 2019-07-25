@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
           },
         ),
         title: TitleText(
-          title: Strings.getString(Ids.login),
+          title: S.of(context).cash_mall,
         ),
         backgroundColor: MyColors.white,
       ),
@@ -97,7 +97,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
-              SubmitButton(desc: Strings.getString(Ids.login), callback: () {}),
+              SubmitButton(desc: S.of(context).login, callback: () {}),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
               SizedBox(
                 width: ScreenUtil().setWidth(500),
@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                       splashColor: MyColors.white,
                       child: Container(
                         child: Text(
-                          Strings.getString(Ids.forget_password),
+                          S.of(context).forget_password,
                           style: TextStyle(
                             fontSize: ScreenUtil().setSp(DimentSize.desc_size),
                             color: MyColors.fontColor,
@@ -132,7 +132,7 @@ class LoginPage extends StatelessWidget {
                       splashColor: MyColors.white,
                       child: Container(
                         child: Text(
-                          Strings.getString(Ids.register),
+                          S.of(context).register,
                           style: TextStyle(
                             fontSize: ScreenUtil().setSp(DimentSize.desc_size),
                             color: MyColors.fontColor,
