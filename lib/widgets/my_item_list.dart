@@ -12,44 +12,37 @@ class MyItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: ScreenUtil().setHeight(40),
-          ),
-          Row(
-            children: <Widget>[
-              SizedBox(
-                width: ScreenUtil().setWidth(80),
+      child: SizedBox(
+        width: ScreenUtil.instance.setWidth(670),
+        height: ScreenUtil.instance.setHeight(122),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: ScreenUtil.instance.setWidth(40),
               ),
-              SizedBox(
-                width: ScreenUtil().setWidth(124),
-                height: ScreenUtil().setHeight(42),
-                child: Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: ScreenUtil().setSp(DimentSize.desc_size),
-                    color: MyColors.fontColor,
-                  ),
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontSize: ScreenUtil().setSp(DimentSize.desc_size),
+                  color: MyColors.fontColor,
                 ),
               ),
-              SizedBox(
-                width: ScreenUtil().setWidth(434),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: ScreenUtil.instance.setWidth(40),
               ),
-              Image.asset(
+              child: Image.asset(
                 imageUrl,
                 height: ScreenUtil().setHeight(11),
                 width: ScreenUtil().setWidth(20),
               ),
-              SizedBox(
-                width: ScreenUtil().setWidth(80),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: ScreenUtil().setHeight(40),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
       onTap: callback,
     );

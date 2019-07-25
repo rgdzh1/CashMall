@@ -1,4 +1,4 @@
-import 'package:fluro/fluro.dart';
+import 'package:CashMall/cashmall.dart';
 
 class Application {
   static Router router;

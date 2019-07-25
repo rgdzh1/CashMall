@@ -11,11 +11,60 @@ class Routes {
         print("Router Not Found Path");
       },
     );
-    router.define(RoutesPath.homePath, handler: homeHandler);
-    router.define(RoutesPath.secondPath, handler: secondHandler);
-    router.define(RoutesPath.threePath, handler: threeHandler);
-    router.define(RoutesPath.fourPath, handler: fourHandler);
-    router.define(RoutesPath.AboutUsPath, handler: aboutUsHandler);
-    router.define(RoutesPath.loginRegisterPath, handler: loginRegisterHandler);
+    router.define(
+      RoutesPath.secondPath,
+      handler: secondHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.threePath,
+      handler: threeHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.fourPath,
+      handler: fourHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.homePath,
+      handler: homeHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.AboutUsPath,
+      handler: aboutUsHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.loginPath,
+      handler: loginHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.registerCenterPath,
+      handler: registerHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.registerPasswordPath,
+      handler: registerPasswordHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.changeAccountPasswordPath,
+      handler: changeAccountPasswordHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.changeAccountPasswordCodePath,
+      handler: changePasswordCodeHandler,
+      transitionType: TransitionType.cupertino,
+    );
+    router.define(
+      RoutesPath.changePasswordPath,
+      handler: changePasswordHandler,
+      transitionType: TransitionType.cupertino,
+    );
   }
 }

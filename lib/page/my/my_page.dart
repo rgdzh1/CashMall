@@ -57,8 +57,10 @@ class MyPage extends StatelessWidget {
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
 //              Fluttertoast.showToast(msg: Strings.my_item_1);
-              Application.router.navigateTo(context, RoutesPath.AboutUsPath,
-                  transition: TransitionType.cupertino);
+              Application.router.navigateTo(
+                context,
+                RoutesPath.AboutUsPath,
+              );
             },
           ),
           UnderLine(),
@@ -97,8 +99,11 @@ class MyPage extends StatelessWidget {
           UserLogoPhone(
             imageUrl: ImageUrl.getImageUrl("login_icon.png"),
             phoneNum: "9953671255",
-            callback: (){
-              Application.router.navigateTo(context, RoutesPath.loginRegisterPath,transition: TransitionType.cupertino);
+            callback: () {
+              Application.router.navigateTo(
+                context,
+                RoutesPath.loginPath,
+              );
             },
           ),
           _getListContent(context),
