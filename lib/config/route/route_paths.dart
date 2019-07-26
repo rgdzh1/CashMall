@@ -10,5 +10,5 @@ class RoutesPath {
   static const String changeAccountPasswordPath = "/page/login/changeaccountpassword";
   static const String changeAccountPasswordCodePath = "/page/login/changeaccountpasswordcode";
   static const String changePasswordPath = "/page/login/changepassword";
-
+  static const String identityInfoPath = "/page/identityInfo";
 }

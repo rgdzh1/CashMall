@@ -59,3 +59,9 @@ var changePasswordHandler = Handler(
     return ChangePasswordPage();
   },
 );
+
+var identityInfoHandler = Handler(
+  handlerFunc: (BuildContext context, Map<String, List<String>> parames) {
+    return IdentityPage();
+  },
+);

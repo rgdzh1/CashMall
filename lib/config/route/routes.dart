@@ -66,5 +66,10 @@ class Routes {
       handler: changePasswordHandler,
       transitionType: TransitionType.cupertino,
     );
+    router.define(
+      RoutesPath.identityInfoPath,
+      handler: identityInfoHandler,
+      transitionType: TransitionType.cupertino,
+    );
   }
 }

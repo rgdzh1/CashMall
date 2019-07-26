@@ -6,6 +6,7 @@ class AboutUs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
+        elevation: 1,
         centerTitle: true,
         title: TitleText(
           title: S.of(context).about_us_title,

@@ -21,24 +21,35 @@ class S implements WidgetsLocalizations {
 
   String get about_us_desc => "我们公司专注于金融领域的智能推荐平台，为借款用户提供更专业、更优质的服务，我们将会为您挑选、匹配适合您的平台，让您的借款申请更容易，更快速。";
   String get about_us_title => "关于我们";
+  String get authentication_head_desc => "Informasi harus benar dan akurat, jika tidak maka akan menyebabkan kegagalan pinjaman";
+  String get authentication_info => "认证信息";
   String get btn_facebook_sms => "从Facebook获取验证码";
   String get cash_mall => "Cash Mall";
   String get change_password => "更改密码";
+  String get click_tack_photo => "点击拍照";
   String get confirm => "确认";
   String get desc_try_other_way => "试一试其他方式";
   String get forget_password => "忘记密码";
   String get get_sms_code => "获取验证码";
   String get hint_input_account => "请输入账户";
   String get hint_input_password => "设置密码";
+  String get hint_tack_face_photo => "请拍摄人脸正面";
   String get home => "Home";
+  String get id_number => "证件号";
+  String get id_type => "证件类型";
+  String get identity_id_desc => "Silakan ambil foto bagian depan KTP Anda";
+  String get inmadiate_apply => "立即申请";
   String get login => "登录";
   String get my => "My";
-  String get my_item_1 => "我的App";
+  String get my_item_1 => "身份认证";
   String get my_item_2 => "关于我们";
   String get my_item_3 => "清除缓存";
   String get my_item_4 => "退出登陆";
+  String get my_name => "本人姓名";
   String get next => "下一步";
+  String get please_input => "请填写";
   String get register => "注册";
+  String get tips_identity_bottom => "请您确保证件信息清晰，且露出手臂，注意不要遮挡面部";
   String get try_way => "试一试";
 }
 
@@ -53,19 +64,41 @@ class $zh_CN extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
-  String get hint_input_password => "设置密码";
-  @override
   String get next => "下一步";
   @override
   String get desc_try_other_way => "试一试其他方式";
   @override
+  String get login => "登录";
+  @override
+  String get inmadiate_apply => "立即申请";
+  @override
+  String get change_password => "更改密码";
+  @override
+  String get my_name => "本人姓名";
+  @override
+  String get authentication_head_desc => "信息需真实有效，否则将导致借款失败";
+  @override
+  String get tips_identity_bottom => "请您确保证件信息清晰，且露出手臂，注意不要遮挡面部";
+  @override
+  String get about_us_title => "关于我们";
+  @override
+  String get try_way => "试一试";
+  @override
+  String get please_input => "请填写";
+  @override
+  String get id_type => "证件类型";
+  @override
+  String get hint_input_password => "设置密码";
+  @override
+  String get id_number => "证件号";
+  @override
   String get btn_facebook_sms => "从Facebook获取验证码";
+  @override
+  String get click_tack_photo => "点击拍照";
   @override
   String get get_sms_code => "获取验证码";
   @override
   String get my => "My";
-  @override
-  String get login => "登录";
   @override
   String get hint_input_account => "请输入账户";
   @override
@@ -73,25 +106,25 @@ class $zh_CN extends S {
   @override
   String get confirm => "确认";
   @override
-  String get change_password => "更改密码";
+  String get authentication_info => "认证信息";
   @override
   String get about_us_desc => "我们公司专注于金融领域的智能推荐平台，为借款用户提供更专业、更优质的服务，我们将会为您挑选、匹配适合您的平台，让您的借款申请更容易，更快速。";
   @override
   String get forget_password => "忘记密码";
   @override
-  String get my_item_1 => "我的App";
-  @override
-  String get about_us_title => "关于我们";
+  String get my_item_1 => "身份认证";
   @override
   String get my_item_2 => "关于我们";
   @override
   String get my_item_3 => "清除缓存";
   @override
-  String get try_way => "试一试";
-  @override
   String get my_item_4 => "退出登陆";
   @override
   String get cash_mall => "Cash Mall";
+  @override
+  String get identity_id_desc => "请拍摄身份证正面";
+  @override
+  String get hint_tack_face_photo => "请拍摄人脸正面";
   @override
   String get register => "注册";
 }
@@ -103,19 +136,41 @@ class $in_ID extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
-  String get hint_input_password => "设置密码";
-  @override
   String get next => "下一步";
   @override
   String get desc_try_other_way => "试一试其他方式";
   @override
+  String get login => "登录";
+  @override
+  String get inmadiate_apply => "立即申请";
+  @override
+  String get change_password => "更改密码";
+  @override
+  String get my_name => "本人姓名";
+  @override
+  String get authentication_head_desc => "信息需真实有效，否则将导致借款失败";
+  @override
+  String get tips_identity_bottom => "请您确保证件信息清晰，且露出手臂，注意不要遮挡面部";
+  @override
+  String get about_us_title => "关于我们";
+  @override
+  String get try_way => "试一试";
+  @override
+  String get please_input => "请填写";
+  @override
+  String get id_type => "证件类型";
+  @override
+  String get hint_input_password => "设置密码";
+  @override
+  String get id_number => "证件号";
+  @override
   String get btn_facebook_sms => "从Facebook获取验证码";
+  @override
+  String get click_tack_photo => "点击拍照";
   @override
   String get get_sms_code => "获取验证码";
   @override
   String get my => "My";
-  @override
-  String get login => "登录";
   @override
   String get hint_input_account => "请输入账户";
   @override
@@ -123,25 +178,25 @@ class $in_ID extends S {
   @override
   String get confirm => "确认";
   @override
-  String get change_password => "更改密码";
+  String get authentication_info => "认证信息";
   @override
   String get about_us_desc => "我们公司专注于金融领域的智能推荐平台，为借款用户提供更专业、更优质的服务，我们将会为您挑选、匹配适合您的平台，让您的借款申请更容易，更快速。";
   @override
   String get forget_password => "忘记密码";
   @override
-  String get my_item_1 => "我的App";
-  @override
-  String get about_us_title => "关于我们";
+  String get my_item_1 => "身份认证";
   @override
   String get my_item_2 => "关于我们";
   @override
   String get my_item_3 => "清除缓存";
   @override
-  String get try_way => "试一试";
-  @override
   String get my_item_4 => "退出登陆";
   @override
   String get cash_mall => "Cash Mall";
+  @override
+  String get identity_id_desc => "请拍摄身份证正面";
+  @override
+  String get hint_tack_face_photo => "请拍摄人脸正面";
   @override
   String get register => "注册";
 }

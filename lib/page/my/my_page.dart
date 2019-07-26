@@ -48,7 +48,7 @@ class MyPage extends StatelessWidget {
             name: S.of(context).my_item_1,
             imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
             callback: () {
-              Fluttertoast.showToast(msg: S.of(context).my_item_1);
+              Application.router.navigateTo(context, RoutesPath.identityInfoPath);
             },
           ),
           UnderLine(),
