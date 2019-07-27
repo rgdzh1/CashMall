@@ -106,11 +106,9 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
                   ///print(value ?? "");
                   Fluttertoast.showToast(msg: value.toString());
                 },
-
                 ///输入完成时
                 onFilled: (value) {
                   Fluttertoast.showToast(msg: "输入完成" + value.toString());
-
                   ///print('Your input is $value.');
                 },
               ),

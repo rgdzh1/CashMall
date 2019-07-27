@@ -92,11 +92,6 @@ class IdentityPage extends StatelessWidget {
                       ),
                     ),
                   ),
-//                  Flexible(
-//                    child: TextField(
-//
-//                    ),
-//                  )
                   Expanded(
                     child: TextField(
                       cursorColor: MyColors.primary,

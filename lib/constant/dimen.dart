@@ -4,5 +4,6 @@ class DimentSize{
   static final double title_size = 34;
   static final double desc_size = 28;
   static final double desc_size_small = 24;
+  static final double desc_size_agin_small = 20;
 
 }

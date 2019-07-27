@@ -14,6 +14,10 @@ export 'dart:async';
 export 'package:flutter/services.dart';
 export 'generated/i18n.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
+export 'package:carousel_slider/carousel_slider.dart';
+export 'package:cached_network_image/cached_network_image.dart';
+export 'package:CashMall/widgets/dropdown_menu/dropdown_menu.dart';
+export 'dart:convert';
 
 //export 'package:flutter_localizations/flutter_localizations.dart';
 //export 'package:fluintl/fluintl.dart';
@@ -72,6 +76,7 @@ export 'package:CashMall/widgets/submit_buttom.dart';
 export 'package:CashMall/widgets/rich/real_rich_text.dart';
 export 'package:CashMall/widgets/slide_right_route.dart';
 export 'package:CashMall/widgets/verification_code_input_demo_page.dart';
+export 'package:CashMall/widgets/cashmall_banner.dart';
 
 
 
