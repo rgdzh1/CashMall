@@ -1,20 +1,14 @@
 package com.oklik.cashmall;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
-import com.airbnb.deeplinkdispatch.DeepLink;
 import com.oklik.cashmall.constant.NativeKey;
-import com.oklik.cashmall.constant.NativePath;
 import com.taobao.idlefish.flutterboost.containers.BoostFlutterActivity;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.Map;
 
-import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
@@ -41,5 +35,17 @@ public class MainActivity extends BoostFlutterActivity {
     @Override
     public void onRegisterPlugins(PluginRegistry registry) {
         GeneratedPluginRegistrant.registerWith(registry);
+    }
+
+    long mExitTime;
+
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_LONG).show();
+            mExitTime = System.currentTimeMillis();
+        } else {
+            finish();
+        }
     }
 }
