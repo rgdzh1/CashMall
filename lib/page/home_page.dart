@@ -1,4 +1,7 @@
 import 'package:CashMall/cashmall.dart';
+import 'package:CashMall/widgets/custom_pull/gsy_refresh_sliver.dart';
+import 'package:CashMall/widgets/custom_pull/refrsh_demo_page3.dart';
+import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,6 +36,7 @@ List<String> bannerUrlList = [
 class _HomePageState extends State<HomePage> {
   ScrollController scrollController;
   GlobalKey globalKey;
+  int itemSize = 10;
 
   @override
   void initState() {
@@ -91,22 +95,31 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             new CustomScrollView(
               controller: scrollController,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               slivers: <Widget>[
+                CupertinoSliverRefreshControl(
+                  key: sliverRefreshKey,
+                  refreshIndicatorExtent: 100,
+                  refreshTriggerPullDistance: 140,
+                  onRefresh: onRefresh,
+                  //下拉刷新
+                  builder: buildSimpleRefreshIndicator,
+                ),
                 new SliverList(
                   key: globalKey,
                   delegate: new SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                    return CashMallBanner(bannerUrlList);
-                  }, childCount: 1),
+                    (BuildContext context, int index) {
+                      return CashMallBanner(bannerUrlList);
+                    },
+                    childCount: 1,
+                  ),
                 ),
                 new SliverPersistentHeader(
                   delegate: new DropdownSliverChildBuilderDelegate(
                     builder: (BuildContext context) {
                       return new Container(
-//                        padding: EdgeInsets.only(
-////                          right: ScreenUtil.instance.setWidth(20),
-////                          left: ScreenUtil.instance.setWidth(20),
-////                        ),
                         color: MyColors.white,
                         child: buildDropdownHeader(onTap: this._onTapHead),
                       );
@@ -118,6 +131,14 @@ class _HomePageState extends State<HomePage> {
                 new SliverList(
                   delegate: new SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
+                      if (index == itemSize - 1) {
+                        return new Container(
+                          margin: EdgeInsets.all(10),
+                          child: Align(
+                            child: CupertinoActivityIndicator(radius: 14,),
+                          ),
+                        );
+                      }
                       return new Container(
                         height: ScreenUtil.instance.setHeight(393),
                         width: ScreenUtil.instance.setWidth(750),
@@ -125,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                         child: getListItem(context),
                       );
                     },
-                    childCount: 10,
+                    childCount: itemSize,
                   ),
                 ),
               ],
@@ -338,6 +359,49 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  bool disposed = false;
+  final GlobalKey<CupertinoSliverRefreshControlState> sliverRefreshKey =
+      GlobalKey<CupertinoSliverRefreshControlState>();
+
+  Future<void> onRefresh() async {
+    await Future.delayed(Duration(seconds: 2));
+    if (disposed) {
+      return;
+    }
+    setState(() {
+      Fluttertoast.showToast(msg: "你刷新了页面");
+    });
+  }
+
+  Future<void> loadMore() async {
+    await Future.delayed(Duration(seconds: 2));
+    if (disposed) {
+      return;
+    }
+    setState(() {
+      itemSize += 1;
+      Fluttertoast.showToast(msg: "你加载了新数据");
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    ///直接触发下拉
+    new Future.delayed(const Duration(milliseconds: 500), () {
+      scrollController.animateTo(-141,
+          duration: Duration(milliseconds: 600), curve: Curves.linear);
+      return true;
+    });
+  }
+
+  @override
+  void dispose() {
+    disposed = true;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -351,7 +415,23 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
       ),
 //      body: buildInnerListHeaderDropdownMenu(),
-      body: buildInnerListHeaderDropdownMenu(),
+      body: new NotificationListener(
+        onNotification: (ScrollNotification notification) {
+          ///通知 CupertinoSliverRefreshControl 当前的拖拽状态
+          sliverRefreshKey.currentState.notifyScrollNotification(notification);
+
+          ///判断当前滑动位置是不是到达底部，触发加载更多回调
+          if (notification is ScrollEndNotification) {
+            if (scrollController.position.pixels > 0 &&
+                scrollController.position.pixels ==
+                    scrollController.position.maxScrollExtent) {
+              loadMore();
+            }
+          }
+          return false;
+        },
+        child: buildInnerListHeaderDropdownMenu(),
+      ),
     );
   }
 }

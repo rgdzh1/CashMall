@@ -85,13 +85,11 @@ class _RefreshDemoPageState3 extends State<RefreshDemoPage3> {
                       _scrollController.position.maxScrollExtent) {
                 loadMore();
               }
-
             }
             return false;
           },
           child: CustomScrollView(
             controller: _scrollController,
-
             ///回弹效果
             physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()),
