@@ -41,3 +41,43 @@ Widget buildCheckItem(BuildContext context, dynamic data, bool selected) {
         ],
       ));
 }
+
+
+Widget buildDilogCheckItem(BuildContext context) {
+  return new Padding(
+      padding: new EdgeInsets.all(10.0),
+      child: new Row(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil.instance.setWidth(20),
+            ),
+          ),
+          new Text(
+            "test",
+            style: true
+                ? new TextStyle(
+                fontSize: 14.0,
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.w400)
+                : new TextStyle(fontSize: 14.0),
+          ),
+          new Expanded(
+            child: new Align(
+              alignment: Alignment.centerRight,
+              child: true
+                  ? new Icon(
+                Icons.check,
+                color: Theme.of(context).primaryColor,
+              )
+                  : null,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: ScreenUtil.instance.setWidth(20),
+            ),
+          ),
+        ],
+      ));
+}

@@ -71,5 +71,6 @@ class Routes {
       handler: identityInfoHandler,
       transitionType: TransitionType.cupertino,
     );
+
   }
 }

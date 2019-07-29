@@ -1,29 +1,10 @@
 import 'package:CashMall/cashmall.dart';
-import 'package:CashMall/widgets/custom_pull/gsy_refresh_sliver.dart';
-import 'package:CashMall/widgets/custom_pull/refrsh_demo_page3.dart';
-import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
-const List<Map<String, dynamic>> moneyOrders = [
-  {"title": "综合排序", "id": 0},
-  {"title": "金额升序", "id": 1},
-  {"title": "金额降序", "id": 2},
-];
-
-const List<Map<String, dynamic>> passOrder = [
-  {"title": "通过率排序", "id": 0},
-  {"title": "通过率升序", "id": 1},
-  {"title": "通过率降序", "id": 2},
-];
-const List<Map<String, dynamic>> interestOrder = [
-  {"title": "利率排序", "id": 0},
-  {"title": "利率升序", "id": 1},
-  {"title": "利率降序", "id": 2},
-];
 
 List<String> bannerUrlList = [
   "https://manhua.qpic.cn/operation/0/19_23_51_3fa71e4fd07f0f370af0465faa6ccdb5_1555689063579.jpg/0",
@@ -35,7 +16,6 @@ List<String> bannerUrlList = [
 
 class _HomePageState extends State<HomePage> {
   ScrollController scrollController;
-  GlobalKey globalKey;
   int itemSize = 10;
 
   @override
@@ -43,122 +23,6 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     scrollController = new ScrollController();
-    globalKey = new GlobalKey();
-  }
-
-  DropdownMenu buildDropdownMenu() {
-    return new DropdownMenu(
-        maxMenuHeight: kDropdownMenuItemHeight * 10,
-        menus: [
-          new DropdownMenuBuilder(
-            builder: (BuildContext context) {
-              return new DropdownListMenu(
-                selectedIndex: 0,
-                data: passOrder,
-                itemBuilder: buildCheckItem,
-              );
-            },
-            height: kDropdownMenuItemHeight * passOrder.length,
-          ),
-          new DropdownMenuBuilder(
-            builder: (BuildContext context) {
-              return new DropdownListMenu(
-                selectedIndex: 0,
-                data: moneyOrders,
-                itemBuilder: buildCheckItem,
-              );
-            },
-            height: kDropdownMenuItemHeight * moneyOrders.length,
-          ),
-          new DropdownMenuBuilder(
-            builder: (BuildContext context) {
-              return new DropdownListMenu(
-                selectedIndex: 0,
-                data: interestOrder,
-                itemBuilder: buildCheckItem,
-              );
-            },
-            height: kDropdownMenuItemHeight * moneyOrders.length,
-          )
-        ]);
-  }
-
-  //主题布局
-  Widget buildInnerListHeaderDropdownMenu() {
-    return new DefaultDropdownMenuController(
-        onSelected: ({int menuIndex, int index, int subIndex, dynamic data}) {
-          Fluttertoast.showToast(
-              msg:
-                  "menuIndex:$menuIndex index:$index subIndex:$subIndex data:$data");
-        },
-        child: new Stack(
-          children: <Widget>[
-            new CustomScrollView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: <Widget>[
-                CupertinoSliverRefreshControl(
-                  key: sliverRefreshKey,
-                  refreshIndicatorExtent: 100,
-                  refreshTriggerPullDistance: 140,
-                  onRefresh: onRefresh,
-                  //下拉刷新
-                  builder: buildSimpleRefreshIndicator,
-                ),
-                new SliverList(
-                  key: globalKey,
-                  delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return CashMallBanner(bannerUrlList);
-                    },
-                    childCount: 1,
-                  ),
-                ),
-                new SliverPersistentHeader(
-                  delegate: new DropdownSliverChildBuilderDelegate(
-                    builder: (BuildContext context) {
-                      return new Container(
-                        color: MyColors.white,
-                        child: buildDropdownHeader(onTap: this._onTapHead),
-                      );
-                    },
-                  ),
-                  pinned: true,
-                  floating: true,
-                ),
-                new SliverList(
-                  delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      if (index == itemSize - 1) {
-                        return new Container(
-                          margin: EdgeInsets.all(10),
-                          child: Align(
-                            child: CupertinoActivityIndicator(radius: 14,),
-                          ),
-                        );
-                      }
-                      return new Container(
-                        height: ScreenUtil.instance.setHeight(393),
-                        width: ScreenUtil.instance.setWidth(750),
-                        color: MyColors.white,
-                        child: getListItem(context),
-                      );
-                    },
-                    childCount: itemSize,
-                  ),
-                ),
-              ],
-            ),
-            new Padding(
-              padding: new EdgeInsets.only(
-                top: ScreenUtil.instance.setHeight(92),
-              ),
-              child: buildDropdownMenu(),
-            )
-          ],
-        ));
   }
 
   Widget getListItem(BuildContext context) {
@@ -339,39 +203,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onTapHead(int index) {
-    RenderObject renderObject = globalKey.currentContext.findRenderObject();
-    DropdownMenuController controller =
-        DefaultDropdownMenuController.of(globalKey.currentContext);
-    scrollController
-        .animateTo(scrollController.offset + renderObject.semanticBounds.height,
-            duration: new Duration(milliseconds: 150), curve: Curves.ease)
-        .whenComplete(() {
-      controller.show(index);
-    });
-  }
-
-  DropdownHeader buildDropdownHeader({DropdownMenuHeadTapCallback onTap}) {
-    return new DropdownHeader(
-      height: ScreenUtil.instance.setHeight(92),
-      onTap: onTap,
-      titles: [passOrder[0], moneyOrders[0], interestOrder[0]],
-    );
-  }
-
   bool disposed = false;
-  final GlobalKey<CupertinoSliverRefreshControlState> sliverRefreshKey =
-      GlobalKey<CupertinoSliverRefreshControlState>();
-
-  Future<void> onRefresh() async {
-    await Future.delayed(Duration(seconds: 2));
-    if (disposed) {
-      return;
-    }
-    setState(() {
-      Fluttertoast.showToast(msg: "你刷新了页面");
-    });
-  }
 
   Future<void> loadMore() async {
     await Future.delayed(Duration(seconds: 2));
@@ -381,18 +213,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       itemSize += 1;
       Fluttertoast.showToast(msg: "你加载了新数据");
-    });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    ///直接触发下拉
-    new Future.delayed(const Duration(milliseconds: 500), () {
-      scrollController.animateTo(-141,
-          duration: Duration(milliseconds: 600), curve: Curves.linear);
-      return true;
     });
   }
 
@@ -407,19 +227,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
-        elevation: 0,
+        elevation: 0.5,
         centerTitle: true,
         title: TitleText(
           title: S.of(context).cash_mall,
         ),
         automaticallyImplyLeading: false,
       ),
-//      body: buildInnerListHeaderDropdownMenu(),
       body: new NotificationListener(
         onNotification: (ScrollNotification notification) {
-          ///通知 CupertinoSliverRefreshControl 当前的拖拽状态
-          sliverRefreshKey.currentState.notifyScrollNotification(notification);
-
           ///判断当前滑动位置是不是到达底部，触发加载更多回调
           if (notification is ScrollEndNotification) {
             if (scrollController.position.pixels > 0 &&
@@ -430,8 +246,107 @@ class _HomePageState extends State<HomePage> {
           }
           return false;
         },
-        child: buildInnerListHeaderDropdownMenu(),
+        child: new Stack(
+          children: <Widget>[
+            new CustomScrollView(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              slivers: <Widget>[
+                new SliverList(
+                  delegate: new SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return CashMallBanner(bannerUrlList);
+                    },
+                    childCount: 1,
+                  ),
+                ),
+                new SliverPersistentHeader(
+                  delegate: new DropdownSliverChildBuilderDelegate(
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: ScreenUtil.instance.setHeight(92),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: ScreenUtil.instance.setWidth(40),
+                        ),
+                        color: MyColors.white,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            FlatButton(
+                              child: Text("综合排序"),
+                              onPressed: () {
+                                _showCupertinoPicker(context);
+                              },
+                            ),
+                            FlatButton(
+                              child: Text("通过率"),
+                            ),
+                            FlatButton(
+                              child: Text("利率"),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  pinned: true,
+                  floating: true,
+                ),
+                new SliverList(
+                  delegate: new SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      if (index == itemSize - 1) {
+                        return new Container(
+                          margin: EdgeInsets.all(10),
+                          child: Align(
+                            child: CupertinoActivityIndicator(
+                              radius: 14,
+                            ),
+                          ),
+                        );
+                      }
+                      return new Container(
+                        height: ScreenUtil.instance.setHeight(393),
+                        width: ScreenUtil.instance.setWidth(750),
+                        color: MyColors.white,
+                        child: getListItem(context),
+                      );
+                    },
+                    childCount: itemSize,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  void _showCupertinoPicker(BuildContext cxt) {
+    final picker = CupertinoPicker(
+        itemExtent: ScreenUtil.instance.setHeight(40),
+        onSelectedItemChanged: (position) {
+          print('The position is $position');
+        },
+        children: [
+          Text("0"),
+          Text("1"),
+          Text("2"),
+          Text("3"),
+          Text("4"),
+        ]);
+
+    showCupertinoModalPopup(
+        context: cxt,
+        builder: (cxt) {
+          return Container(
+            height: 200,
+            child: picker,
+          );
+        });
   }
 }

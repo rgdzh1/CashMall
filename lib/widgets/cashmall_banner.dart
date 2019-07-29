@@ -29,6 +29,8 @@ class CashMallBannerState extends State<CashMallBanner>
           alignment: Alignment.bottomCenter,
           children: <Widget>[
             Container(
+              width: ScreenUtil.instance.setWidth(750),
+              height: ScreenUtil.instance.setHeight(188),
               color: Colors.white,
               child: CarouselSlider(
                 viewportFraction: 1.0,
