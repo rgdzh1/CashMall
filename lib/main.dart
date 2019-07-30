@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     FlutterBoost.singleton.registerPageBuilders({
-      NativeKey.MainKey: (pageName, parames, _) => MainContainer(),
+      NativeKey.MainKey: (pageName, parames, uniqueid ) => MainContainer(parames,uniqueid),
     });
     FlutterBoost.handleOnStartPage();
     //创建fluro
@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: ThemeData(primaryColor: MyColors.primary),
       debugShowCheckedModeBanner: false,

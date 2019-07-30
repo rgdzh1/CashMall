@@ -210,10 +210,12 @@ class _HomePageState extends State<HomePage> {
     if (disposed) {
       return;
     }
-    setState(() {
-      itemSize += 1;
-      Fluttertoast.showToast(msg: "你加载了新数据");
-    });
+    setState(
+      () {
+        itemSize += 1;
+        Fluttertoast.showToast(msg: "你加载了新数据");
+      },
+    );
   }
 
   @override
@@ -227,8 +229,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
-        elevation: 0.5,
         centerTitle: true,
+        elevation: 0.6,
         title: TitleText(
           title: S.of(context).cash_mall,
         ),
@@ -246,79 +248,126 @@ class _HomePageState extends State<HomePage> {
           }
           return false;
         },
-        child: new Stack(
-          children: <Widget>[
-            new CustomScrollView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
+        child: CustomScrollView(
+          controller: scrollController,
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+          slivers: <Widget>[
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return CashMallBanner(bannerUrlList);
+                },
+                childCount: 1,
               ),
-              slivers: <Widget>[
-                new SliverList(
-                  delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return CashMallBanner(bannerUrlList);
-                    },
-                    childCount: 1,
-                  ),
-                ),
-                new SliverPersistentHeader(
-                  delegate: new DropdownSliverChildBuilderDelegate(
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: ScreenUtil.instance.setHeight(92),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: ScreenUtil.instance.setWidth(40),
-                        ),
-                        color: MyColors.white,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            FlatButton(
-                              child: Text("综合排序"),
-                              onPressed: () {
-                                _showCupertinoPicker(context);
+            ),
+            new SliverPersistentHeader(
+              delegate: new DropdownSliverChildBuilderDelegate(
+                builder: (BuildContext context) {
+                  return Material(
+                    child: Container(
+                      height: ScreenUtil.instance.setHeight(90),
+                      color: MyColors.white,
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned(
+                            top: ScreenUtil.instance.setHeight(28),
+                            left: ScreenUtil.instance.setWidth(40),
+                            child: InkWell(
+                              child: Text(
+                                "Komprehensif",
+                                style: TextStyle(
+                                  fontSize: ScreenUtil.instance.setSp(
+                                    DimentSize.desc_size,
+                                  ),
+                                  color: MyColors.primary,
+                                ),
+                              ),
+                              onTap: () {
+                                popFilterMeu().then((index) {
+                                  print("看看索引" + index.toString());
+                                });
                               },
                             ),
-                            FlatButton(
-                              child: Text("通过率"),
-                            ),
-                            FlatButton(
-                              child: Text("利率"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  pinned: true,
-                  floating: true,
-                ),
-                new SliverList(
-                  delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      if (index == itemSize - 1) {
-                        return new Container(
-                          margin: EdgeInsets.all(10),
-                          child: Align(
-                            child: CupertinoActivityIndicator(
-                              radius: 14,
+                          ),
+                          Positioned(
+//                            top: ScreenUtil.instance.setHeight(24),
+                            left: ScreenUtil.instance.setWidth(213),
+                            top: ScreenUtil.instance.setHeight(20),
+                            child: InkWell(
+                              child: Icon(
+                                Icons.arrow_drop_down,
+                                color: MyColors.primary,
+                              ),
+                              onTap: () {
+                                popFilterMeu().then((index) {
+                                  print("看看索引" + index.toString());
+                                });
+                              },
                             ),
                           ),
-                        );
-                      }
-                      return new Container(
-                        height: ScreenUtil.instance.setHeight(393),
-                        width: ScreenUtil.instance.setWidth(750),
-                        color: MyColors.white,
-                        child: getListItem(context),
-                      );
-                    },
-                    childCount: itemSize,
-                  ),
-                ),
-              ],
+                          Positioned(
+                              top: ScreenUtil.instance.setHeight(28),
+                              left: ScreenUtil.instance.setWidth(320),
+                              child: InkWell(
+                                child: Text(
+                                  "Mudah lolos",
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil.instance.setSp(
+                                      DimentSize.desc_size,
+                                    ),
+                                    color: MyColors.primary,
+                                  ),
+                                ),
+                              )),
+                          Positioned(
+                            top: ScreenUtil.instance.setHeight(28),
+                            right: ScreenUtil.instance.setWidth(40),
+                            child: InkWell(
+                              child: Text(
+                                "Bunga rendah",
+                                style: TextStyle(
+                                  fontSize: ScreenUtil.instance.setSp(
+                                    DimentSize.desc_size,
+                                  ),
+                                  color: MyColors.primary,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    elevation: 0.6,
+                  );
+                },
+              ),
+              pinned: true,
+              floating: true,
+            ),
+            new SliverList(
+              delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  if (index == itemSize - 1) {
+                    return new Container(
+                      margin: EdgeInsets.all(10),
+                      child: Align(
+                        child: CupertinoActivityIndicator(
+                          radius: 14,
+                        ),
+                      ),
+                    );
+                  }
+                  return new Container(
+                    height: ScreenUtil.instance.setHeight(393),
+                    width: ScreenUtil.instance.setWidth(750),
+                    color: MyColors.white,
+                    child: getListItem(context),
+                  );
+                },
+                childCount: itemSize,
+              ),
             ),
           ],
         ),
@@ -326,27 +375,92 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showCupertinoPicker(BuildContext cxt) {
-    final picker = CupertinoPicker(
-        itemExtent: ScreenUtil.instance.setHeight(40),
-        onSelectedItemChanged: (position) {
-          print('The position is $position');
-        },
-        children: [
-          Text("0"),
-          Text("1"),
-          Text("2"),
-          Text("3"),
-          Text("4"),
-        ]);
-
-    showCupertinoModalPopup(
-        context: cxt,
-        builder: (cxt) {
-          return Container(
-            height: 200,
-            child: picker,
+  Future<int> popFilterMeu() async {
+    return await showCupertinoModalPopup<int>(
+        context: context,
+        builder: (context) {
+          var dialog = CupertinoActionSheet(
+            actions: <Widget>[
+              CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.pop(context, 0);
+                },
+                child: Text(
+                  '综合排序',
+                  style: TextStyle(
+                    fontSize: ScreenUtil.instance.setSp(DimentSize.desc_size),
+                    color: MyColors.primary,
+                  ),
+                ),
+              ),
+              CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.pop(context, 1);
+                },
+                child: Text(
+                  '金额升序',
+                  style: TextStyle(
+                    fontSize: ScreenUtil.instance.setSp(DimentSize.desc_size),
+                    color: MyColors.primary,
+                  ),
+                ),
+              ),
+              CupertinoActionSheetAction(
+                onPressed: () {
+                  Navigator.pop(context, 2);
+                },
+                child: Text(
+                  '金额降序',
+                  style: TextStyle(
+                    fontSize: ScreenUtil.instance.setSp(DimentSize.desc_size),
+                    color: MyColors.primary,
+                  ),
+                ),
+              ),
+            ],
           );
+          return dialog;
         });
   }
+
+//  popFilterMeu() {
+//    showCupertinoModalPopup<String>(
+//      context: context,
+//      builder: (BuildContext context) {
+//        return Container(
+//          height: ScreenUtil.instance.setHeight(300),
+//          child: CupertinoPicker(
+//            backgroundColor: Colors.white,
+//            //选择器背景色
+//            itemExtent: 28,
+//            //item的高度
+//            onSelectedItemChanged: (index) {
+//              //选中item的位置索引
+//              print("index = $index}");
+//            },
+//            children: <Widget>[
+//              Text(
+//                '综合排序',
+//                style: TextStyle(
+//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
+//                ),
+//              ),
+//              Text(
+//                '金额升序',
+//                style: TextStyle(
+//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
+//                ),
+//              ),
+//              Text(
+//                '金额降序',
+//                style: TextStyle(
+//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
+//                ),
+//              ),
+//            ],
+//          ),
+//        );
+//      },
+//    );
+//  }
 }

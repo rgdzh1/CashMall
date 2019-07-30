@@ -82,6 +82,11 @@ import 'package:flutter/cupertino.dart';
 //}
 
 class MainContainer extends StatelessWidget {
+  Map parames;
+  String uniqueId;
+
+  MainContainer(this.parames, this.uniqueId);
+
   List<BottomNavigationBarItem> _getTabs(BuildContext context) {
     return [
       BottomNavigationBarItem(
@@ -118,7 +123,10 @@ class MainContainer extends StatelessWidget {
     ];
   }
 
-  Future<bool> _onWillPop() {
+  //记录导航点击事件得index
+  static final Counter counter = new Counter();
+
+  Future<bool> showDilog() {
     return showDialog(
           context: _context,
           builder: (context) => new AlertDialog(
@@ -141,13 +149,19 @@ class MainContainer extends StatelessWidget {
 
   BuildContext _context;
 
-  //记录导航点击事件得index
-  static final Counter counter = new Counter();
-
   @override
   Widget build(BuildContext context) {
     _context = context;
-//    print("看看计数器" + counter.count.toString());
+    FlutterBoost.containerManager
+        .containerStateOf(uniqueId)
+        .addBackPressedListener(() {
+      if (ModalRoute.of(context).isCurrent &&
+          BoostContainer.of(context).onstage) {
+//        FlutterBoost.singleton.closeCurPage({});
+        showDilog();
+      }
+    });
+    // print("看看计数器" + counter.count.toString());
     ScreenUtil.instance = ScreenUtil(width: 750.0, height: 1334.0)
       ..init(context);
     return ChangeNotifierProvider<Counter>.value(

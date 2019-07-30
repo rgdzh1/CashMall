@@ -10,7 +10,7 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^0.5.3
   cupertino_icons: ^0.1.2
-  flutter_boost: ^0.0.415
+  flutter_boost: ^0.0.420
   fluro: ^1.5.1
   fluttertoast: ^2.2.11
   provider: ^3.0.0+1
