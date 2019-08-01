@@ -1,8 +1,8 @@
 import 'package:CashMall/cashmall.dart';
 
-class IdentityPage extends StatelessWidget {
+class IdentityPage extends BaseStatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget myBuild(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
@@ -366,5 +366,17 @@ class IdentityPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void setOnListenerBackPress(BuildContext context) {
+    FlutterBoost.containerManager
+        .containerStateOf(Application.uniqueId)
+        .addBackPressedListener(() {
+      if (!ModalRoute.of(context).isFirst) {
+//        FlutterBoost.singleton.closeCurPage({});
+        Navigator.of(context).pop();
+      }
+    });
   }
 }

@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(
               color: MyColors.fontColor,
               fontSize:
-                  ScreenUtil.instance.setSp(DimentSize.desc_size_agin_small),
+              ScreenUtil.instance.setSp(DimentSize.desc_size_agin_small),
             ),
           ),
         ),
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
       return;
     }
     setState(
-      () {
+          () {
         itemSize += 1;
         Fluttertoast.showToast(msg: "你加载了新数据");
       },
@@ -232,7 +232,9 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0,
         title: TitleText(
-          title: S.of(context).cash_mall,
+          title: S
+              .of(context)
+              .cash_mall,
         ),
         automaticallyImplyLeading: false,
       ),
@@ -256,14 +258,14 @@ class _HomePageState extends State<HomePage> {
           slivers: <Widget>[
             new SliverList(
               delegate: new SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
+                    (BuildContext context, int index) {
                   return Container(
                     padding: EdgeInsets.symmetric(
                       vertical: ScreenUtil.instance.setWidth(8),
                     ),
                     decoration: BoxDecoration(
                       color: MyColors.white,
-                      border: Border.all(width: 0.5,color: MyColors.bg),
+                      border: Border.all(width: 0.5, color: MyColors.bg),
                     ),
                     height: ScreenUtil.instance.setHeight(188),
                     child: CashMallBanner(bannerUrlList),
@@ -282,7 +284,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     decoration: BoxDecoration(
                       color: MyColors.white,
-                      border: Border.all(width: 0.5,color: MyColors.bg),
+                      border: Border.all(width: 0.5, color: MyColors.bg),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -335,7 +337,7 @@ class _HomePageState extends State<HomePage> {
             ),
             new SliverList(
               delegate: new SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
+                    (BuildContext context, int index) {
                   if (index == itemSize - 1) {
                     return new Container(
                       margin: EdgeInsets.all(10),
@@ -410,113 +412,4 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
-//  popFilterMeu() {
-//    showCupertinoModalPopup<String>(
-//      context: context,
-//      builder: (BuildContext context) {
-//        return Container(
-//          height: ScreenUtil.instance.setHeight(300),
-//          child: CupertinoPicker(
-//            backgroundColor: Colors.white,
-//            //选择器背景色
-//            itemExtent: 28,
-//            //item的高度
-//            onSelectedItemChanged: (index) {
-//              //选中item的位置索引
-//              print("index = $index}");
-//            },
-//            children: <Widget>[
-//              Text(
-//                '综合排序',
-//                style: TextStyle(
-//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
-//                ),
-//              ),
-//              Text(
-//                '金额升序',
-//                style: TextStyle(
-//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
-//                ),
-//              ),
-//              Text(
-//                '金额降序',
-//                style: TextStyle(
-//                  fontSize: ScreenUtil.instance.setSp(DimentSize.title_size),
-//                ),
-//              ),
-//            ],
-//          ),
-//        );
-//      },
-//    );
-//  }
 }
-//child: Stack(
-//children: <Widget>[
-//Positioned(
-//top: ScreenUtil.instance.setHeight(28),
-//left: ScreenUtil.instance.setWidth(40),
-//child: InkWell(
-//child: Text(
-//"Komprehensif",
-//style: TextStyle(
-//fontSize: ScreenUtil.instance.setSp(
-//DimentSize.desc_size,
-//),
-//color: MyColors.primary,
-//),
-//),
-//onTap: () {
-//popFilterMeu().then((index) {
-//print("看看索引" + index.toString());
-//});
-//},
-//),
-//),
-//Positioned(
-////                            top: ScreenUtil.instance.setHeight(24),
-//left: ScreenUtil.instance.setWidth(213),
-//top: ScreenUtil.instance.setHeight(20),
-//child: InkWell(
-//child: Icon(
-//Icons.arrow_drop_down,
-//color: MyColors.primary,
-//),
-//onTap: () {
-//popFilterMeu().then((index) {
-//print("看看索引" + index.toString());
-//});
-//},
-//),
-//),
-//Positioned(
-//top: ScreenUtil.instance.setHeight(28),
-//left: ScreenUtil.instance.setWidth(320),
-//child: InkWell(
-//child: Text(
-//"Mudah lolos",
-//style: TextStyle(
-//fontSize: ScreenUtil.instance.setSp(
-//DimentSize.desc_size,
-//),
-//color: MyColors.primary,
-//),
-//),
-//)),
-//Positioned(
-//top: ScreenUtil.instance.setHeight(28),
-//right: ScreenUtil.instance.setWidth(40),
-//child: InkWell(
-//child: Text(
-//"Bunga rendah",
-//style: TextStyle(
-//fontSize: ScreenUtil.instance.setSp(
-//DimentSize.desc_size,
-//),
-//color: MyColors.primary,
-//),
-//),
-//),
-//)
-//],
-//),

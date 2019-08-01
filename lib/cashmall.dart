@@ -32,6 +32,7 @@ export 'package:CashMall/page/main_container_page.dart';
 export 'package:CashMall/page/my/my_page.dart';
 export 'package:CashMall/page/my/about_us_page.dart';
 export 'package:CashMall/page/identity_page.dart';
+export 'package:CashMall/page/base/base_stateless_widget.dart';
 
 //login register
 export 'package:CashMall/page/login_register/login_page.dart';

@@ -1,6 +1,6 @@
 import 'package:CashMall/cashmall.dart';
 
-class MyPage extends StatelessWidget {
+class MyPage extends BaseStatelessWidget  {
   // 头部背景
   Widget _getHeadBg() {
     return Positioned(
@@ -63,14 +63,6 @@ class MyPage extends StatelessWidget {
               );
             },
           ),
-//          UnderLine(),
-//          MyItemList(
-//            name: S.of(context).my_item_3,
-//            imageUrl: ImageUrl.getImageUrl("arrow_drop_ down.png"),
-//            callback: () {
-//              Fluttertoast.showToast(msg: S.of(context).my_item_3);
-//            },
-//          ),
           UnderLine(),
           MyItemList(
             name: S.of(context).my_item_4,
@@ -85,9 +77,9 @@ class MyPage extends StatelessWidget {
     );
   }
 
+
   @override
-  Widget build(BuildContext context) {
-    double leftrightPadding = ScreenUtil().setHeight(40);
+  Widget myBuild(BuildContext context) {
     return Container(
       color: MyColors.bg,
       constraints: BoxConstraints.expand(),
@@ -110,5 +102,10 @@ class MyPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void setOnListenerBackPress(BuildContext context) {
+
   }
 }

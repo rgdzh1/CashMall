@@ -1,6 +1,7 @@
 import 'package:CashMall/cashmall.dart';
+import 'package:CashMall/page/base/base_stateless_widget.dart';
 
-class MyItemList extends StatelessWidget {
+class MyItemList extends BaseStatelessWidget {
   String name;
 
   String imageUrl;
@@ -10,7 +11,10 @@ class MyItemList extends StatelessWidget {
   MyItemList({this.name, this.imageUrl, this.callback});
 
   @override
-  Widget build(BuildContext context) {
+  setOnListenerBackPress(BuildContext context) {}
+
+  @override
+  Widget myBuild(BuildContext context) {
     return InkWell(
       child: SizedBox(
         width: ScreenUtil.instance.setWidth(670),

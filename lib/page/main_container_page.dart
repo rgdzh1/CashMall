@@ -1,91 +1,13 @@
 import 'package:CashMall/cashmall.dart';
 import 'package:flutter/cupertino.dart';
 
-//class MainContainer extends StatefulWidget {
-//  @override
-//  _MainContainerState createState() => _MainContainerState();
-//}
-
-//class _MainContainerState extends State<MainContainer>  with AutomaticKeepAliveClientMixin{
-//  List<BottomNavigationBarItem> _getTabs() {
-//    return [
-//      BottomNavigationBarItem(
-//        icon: Icon(
-//          CupertinoIcons.home,
-//          size: ScreenUtil().setWidth(44.0),
-//        ),
-//        title: Text(
-//          Strings.home,
-//          style: TextStyle(
-//            fontSize: ScreenUtil().setSp(20.0),
-//          ),
-//        ),
-//      ),
-//      BottomNavigationBarItem(
-//        icon: Icon(
-//          CupertinoIcons.person,
-//          size: ScreenUtil().setWidth(44.0),
-//        ),
-//        title: Text(
-//          Strings.my,
-//          style: TextStyle(
-//            fontSize: ScreenUtil().setWidth(20.0),
-//          ),
-//        ),
-//      ),
-//    ];
-//  }
-//
-//  List<Widget> _getPages() {
-//    return [
-//      HomePage(),
-//      MyPage(),
-//    ];
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    ScreenUtil.instance = ScreenUtil(width: 750.0, height: 1334.0)
-//      ..init(context);
-//    var counter = new Counter();
-//    return ChangeNotifierProvider<Counter>.value(
-//      value: counter,
-//      child: Consumer<Counter>(
-//        builder: (BuildContext context, Counter counter, _) => Scaffold(
-//          backgroundColor: Colors.white,
-//          bottomNavigationBar: SizedBox(
-//            height: ScreenUtil().setHeight(98),
-//            width: ScreenUtil().setWidth(750),
-//            child: BottomNavigationBar(
-//              selectedItemColor: MyColors.primary,
-//              unselectedItemColor: MyColors.fontColor,
-//              items: _getTabs(),
-//              type: BottomNavigationBarType.fixed,
-//              currentIndex: counter.count,
-//              onTap: (int index) {
-//                counter.selectCount(index);
-//              },
-//            ),
-//          ),
-//          body: IndexedStack(
-//            index: counter.count,
-//            children: _getPages(),
-//          ),
-//        ),
-//      ),
-//    );
-//  }
-//
-//  @override
-//  // TODO: implement wantKeepAlive
-//  bool get wantKeepAlive => true;
-//}
-
-class MainContainer extends StatelessWidget {
+class MainContainer extends BaseStatelessWidget {
   Map parames;
-  String uniqueId;
+  final String uniqueId;
 
-  MainContainer(this.parames, this.uniqueId);
+  MainContainer(this.parames, this.uniqueId) {
+    Application.uniqueId = uniqueId;
+  }
 
   List<BottomNavigationBarItem> _getTabs(BuildContext context) {
     return [
@@ -138,7 +60,7 @@ class MainContainer extends StatelessWidget {
                 child: new Text('放弃'),
               ),
               new FlatButton(
-                onPressed: () => Navigator.of(context).pop(true),
+                onPressed: () => FlutterBoost.singleton.closeCurPage({}),
                 child: new Text('退出'),
               ),
             ],
@@ -150,17 +72,9 @@ class MainContainer extends StatelessWidget {
   BuildContext _context;
 
   @override
-  Widget build(BuildContext context) {
+  Widget myBuild(BuildContext context) {
     _context = context;
-    FlutterBoost.containerManager
-        .containerStateOf(uniqueId)
-        .addBackPressedListener(() {
-      if (ModalRoute.of(context).isCurrent &&
-          BoostContainer.of(context).onstage) {
-//        FlutterBoost.singleton.closeCurPage({});
-        showDilog();
-      }
-    });
+
     // print("看看计数器" + counter.count.toString());
     ScreenUtil.instance = ScreenUtil(width: 750.0, height: 1334.0)
       ..init(context);
@@ -190,5 +104,17 @@ class MainContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void setOnListenerBackPress(BuildContext context) {
+    var navigaterSettings = ModalRoute.of(context).settings;
+    FlutterBoost.containerManager
+        .containerStateOf(uniqueId)
+        .addBackPressedListener(() {
+      if (navigaterSettings.name.toString() == RoutesPath.homePath) {
+        showDilog();
+      }
+    });
   }
 }
