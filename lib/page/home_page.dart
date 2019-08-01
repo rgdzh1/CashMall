@@ -230,7 +230,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: MyColors.white,
         centerTitle: true,
-        elevation: 0.6,
+        elevation: 0,
         title: TitleText(
           title: S.of(context).cash_mall,
         ),
@@ -257,7 +257,17 @@ class _HomePageState extends State<HomePage> {
             new SliverList(
               delegate: new SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return CashMallBanner(bannerUrlList);
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: ScreenUtil.instance.setWidth(8),
+                    ),
+                    decoration: BoxDecoration(
+                      color: MyColors.white,
+                      border: Border.all(width: 0.5,color: MyColors.bg),
+                    ),
+                    height: ScreenUtil.instance.setHeight(188),
+                    child: CashMallBanner(bannerUrlList),
+                  );
                 },
                 childCount: 1,
               ),
@@ -265,81 +275,58 @@ class _HomePageState extends State<HomePage> {
             new SliverPersistentHeader(
               delegate: new DropdownSliverChildBuilderDelegate(
                 builder: (BuildContext context) {
-                  return Material(
-                    child: Container(
-                      height: ScreenUtil.instance.setHeight(90),
+                  return Container(
+                    height: ScreenUtil.instance.setHeight(92),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil.instance.setWidth(20),
+                    ),
+                    decoration: BoxDecoration(
                       color: MyColors.white,
-                      child: Stack(
-                        children: <Widget>[
-                          Positioned(
-                            top: ScreenUtil.instance.setHeight(28),
-                            left: ScreenUtil.instance.setWidth(40),
-                            child: InkWell(
-                              child: Text(
-                                "Komprehensif",
-                                style: TextStyle(
-                                  fontSize: ScreenUtil.instance.setSp(
-                                    DimentSize.desc_size,
-                                  ),
-                                  color: MyColors.primary,
+                      border: Border.all(width: 0.5,color: MyColors.bg),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Komprehensif",
+                              style: TextStyle(
+                                fontSize: ScreenUtil.instance.setSp(
+                                  DimentSize.desc_size,
                                 ),
-                              ),
-                              onTap: () {
-                                popFilterMeu().then((index) {
-                                  print("看看索引" + index.toString());
-                                });
-                              },
-                            ),
-                          ),
-                          Positioned(
-//                            top: ScreenUtil.instance.setHeight(24),
-                            left: ScreenUtil.instance.setWidth(213),
-                            top: ScreenUtil.instance.setHeight(20),
-                            child: InkWell(
-                              child: Icon(
-                                Icons.arrow_drop_down,
                                 color: MyColors.primary,
                               ),
-                              onTap: () {
-                                popFilterMeu().then((index) {
-                                  print("看看索引" + index.toString());
-                                });
-                              },
                             ),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: MyColors.primary,
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "Mudah lolos",
+                          style: TextStyle(
+                            fontSize: ScreenUtil.instance.setSp(
+                              DimentSize.desc_size,
+                            ),
+                            color: MyColors.primary,
                           ),
-                          Positioned(
-                              top: ScreenUtil.instance.setHeight(28),
-                              left: ScreenUtil.instance.setWidth(320),
-                              child: InkWell(
-                                child: Text(
-                                  "Mudah lolos",
-                                  style: TextStyle(
-                                    fontSize: ScreenUtil.instance.setSp(
-                                      DimentSize.desc_size,
-                                    ),
-                                    color: MyColors.primary,
-                                  ),
-                                ),
-                              )),
-                          Positioned(
-                            top: ScreenUtil.instance.setHeight(28),
-                            right: ScreenUtil.instance.setWidth(40),
-                            child: InkWell(
-                              child: Text(
-                                "Bunga rendah",
-                                style: TextStyle(
-                                  fontSize: ScreenUtil.instance.setSp(
-                                    DimentSize.desc_size,
-                                  ),
-                                  color: MyColors.primary,
-                                ),
-                              ),
+                        ),
+                        Text(
+                          "Bunga rendah",
+                          style: TextStyle(
+                            fontSize: ScreenUtil.instance.setSp(
+                              DimentSize.desc_size,
                             ),
-                          )
-                        ],
-                      ),
+                            color: MyColors.primary,
+                          ),
+                        ),
+                      ],
                     ),
-                    elevation: 0.6,
                   );
                 },
               ),
@@ -464,3 +451,72 @@ class _HomePageState extends State<HomePage> {
 //    );
 //  }
 }
+//child: Stack(
+//children: <Widget>[
+//Positioned(
+//top: ScreenUtil.instance.setHeight(28),
+//left: ScreenUtil.instance.setWidth(40),
+//child: InkWell(
+//child: Text(
+//"Komprehensif",
+//style: TextStyle(
+//fontSize: ScreenUtil.instance.setSp(
+//DimentSize.desc_size,
+//),
+//color: MyColors.primary,
+//),
+//),
+//onTap: () {
+//popFilterMeu().then((index) {
+//print("看看索引" + index.toString());
+//});
+//},
+//),
+//),
+//Positioned(
+////                            top: ScreenUtil.instance.setHeight(24),
+//left: ScreenUtil.instance.setWidth(213),
+//top: ScreenUtil.instance.setHeight(20),
+//child: InkWell(
+//child: Icon(
+//Icons.arrow_drop_down,
+//color: MyColors.primary,
+//),
+//onTap: () {
+//popFilterMeu().then((index) {
+//print("看看索引" + index.toString());
+//});
+//},
+//),
+//),
+//Positioned(
+//top: ScreenUtil.instance.setHeight(28),
+//left: ScreenUtil.instance.setWidth(320),
+//child: InkWell(
+//child: Text(
+//"Mudah lolos",
+//style: TextStyle(
+//fontSize: ScreenUtil.instance.setSp(
+//DimentSize.desc_size,
+//),
+//color: MyColors.primary,
+//),
+//),
+//)),
+//Positioned(
+//top: ScreenUtil.instance.setHeight(28),
+//right: ScreenUtil.instance.setWidth(40),
+//child: InkWell(
+//child: Text(
+//"Bunga rendah",
+//style: TextStyle(
+//fontSize: ScreenUtil.instance.setSp(
+//DimentSize.desc_size,
+//),
+//color: MyColors.primary,
+//),
+//),
+//),
+//)
+//],
+//),
