@@ -45,10 +45,11 @@ class _RegisterCenterPageState extends BaseState<RegisterCenterPage> {
               SubmitButton(
                 desc: S.of(context).btn_facebook_sms,
                 callback: () {
-                  Application.router.navigateTo(
-                    context,
-                    RoutesPath.registerPasswordPath,
-                  );
+//                  Application.router.navigateTo(
+//                    context,
+//                    RoutesPath.registerPasswordPath,
+//                  );
+                  FlutterBoost.singleton.openPage(NativePath.FACEBOOK_PATH, {}, animated: true);//打开Facebook短信获取
                 },
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(40))),

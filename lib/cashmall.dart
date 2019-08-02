@@ -6,7 +6,6 @@ export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter/services.dart';
 export 'package:fluttertoast/fluttertoast.dart';
-export 'package:CashMall/test_page_flutter_boost.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:flutter_boost/flutter_boost.dart';
 export 'package:flutter/gestures.dart';

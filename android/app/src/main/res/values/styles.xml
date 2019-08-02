@@ -12,4 +12,21 @@
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <item name="colorAccent">@color/color_state_bar</item>
     </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/color_state_bar</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/StyleActivityAnimation</item>
+    </style>
+
+    <!--activity进出场动画-->
+    <style name="StyleActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenExitAnimation">@anim/anim_no</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_no</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+        <!--<item name="android:activityOpenEnterAnimation">@anim/slide_in_left</item>-->
+        <!--<item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>-->
+    </style>
 </resources>

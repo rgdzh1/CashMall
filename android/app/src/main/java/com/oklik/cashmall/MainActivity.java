@@ -1,12 +1,8 @@
 package com.oklik.cashmall;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.oklik.cashmall.constant.NativeKey;
-import com.taobao.idlefish.flutterboost.FlutterBoostPlugin;
-import com.taobao.idlefish.flutterboost.FlutterViewContainerManager;
 import com.taobao.idlefish.flutterboost.containers.BoostFlutterActivity;
 
 import java.lang.ref.WeakReference;
@@ -27,9 +23,7 @@ public class MainActivity extends BoostFlutterActivity {
 
     @Override
     public String getContainerName() {
-
         return NativeKey.MainKey;
-
     }
 
     @Override

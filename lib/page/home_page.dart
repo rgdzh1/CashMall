@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(
               color: MyColors.fontColor,
               fontSize:
-              ScreenUtil.instance.setSp(DimentSize.desc_size_agin_small),
+                  ScreenUtil.instance.setSp(DimentSize.desc_size_agin_small),
             ),
           ),
         ),
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
       return;
     }
     setState(
-          () {
+      () {
         itemSize += 1;
         Fluttertoast.showToast(msg: "你加载了新数据");
       },
@@ -227,16 +227,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MyColors.white,
-        centerTitle: true,
-        elevation: 0,
-        title: TitleText(
-          title: S
-              .of(context)
-              .cash_mall,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+          ScreenUtil.instance.setHeight(80.0),
         ),
-        automaticallyImplyLeading: false,
+        child: AppBar(
+          backgroundColor: MyColors.white,
+          elevation: 0,
+          titleSpacing: ScreenUtil.instance.setWidth(60.0),
+          title: TitleText(
+            title: S.of(context).cash_mall,
+          ),
+          automaticallyImplyLeading: false,
+        ),
       ),
       body: new NotificationListener(
         onNotification: (ScrollNotification notification) {
@@ -258,7 +261,7 @@ class _HomePageState extends State<HomePage> {
           slivers: <Widget>[
             new SliverList(
               delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
+                (BuildContext context, int index) {
                   return Container(
                     padding: EdgeInsets.symmetric(
                       vertical: ScreenUtil.instance.setWidth(8),
@@ -337,7 +340,7 @@ class _HomePageState extends State<HomePage> {
             ),
             new SliverList(
               delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
+                (BuildContext context, int index) {
                   if (index == itemSize - 1) {
                     return new Container(
                       margin: EdgeInsets.all(10),
@@ -411,5 +414,4 @@ class _HomePageState extends State<HomePage> {
           return dialog;
         });
   }
-
 }

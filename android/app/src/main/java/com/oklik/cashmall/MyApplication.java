@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.oklik.cashmall.constant.NativePath;
+import com.blankj.utilcode.util.Utils;
 import com.taobao.idlefish.flutterboost.Debuger;
 import com.taobao.idlefish.flutterboost.FlutterBoostPlugin;
 import com.taobao.idlefish.flutterboost.interfaces.IPlatform;
@@ -57,9 +57,9 @@ public class MyApplication extends FlutterApplication {
              */
             @Override
             public boolean startActivity(Context context, String url, int requestCode) {
-//                Debuger.log("startActivity url=" + url);
+                Debuger.log("startActivity url=" + url);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(NativePath.SecondPath));
+                intent.setData(Uri.parse(url));
                 context.startActivity(intent);
                 return true;
             }
@@ -69,5 +69,9 @@ public class MyApplication extends FlutterApplication {
                 return null;
             }
         });
+        initUtilsCode();
+    }
+    private void initUtilsCode() {
+        Utils.init(this);
     }
 }

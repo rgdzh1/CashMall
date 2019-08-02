@@ -1,1 +1,7 @@
-<resources></resources>
+<resources>
+    <string name="app_name">Pera24</string>
+    <string name="FACEBOOK_APP_ID">376977396400781</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">72828a20b642f70a70bc5224828593a8</string>
+
+
+</resources>

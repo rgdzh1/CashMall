@@ -11,26 +11,7 @@ class Routes {
         print("Router Not Found Path");
       },
     );
-    router.define(
-      RoutesPath.secondPath,
-      handler: secondHandler,
-      transitionType: TransitionType.cupertino,
-    );
-    router.define(
-      RoutesPath.threePath,
-      handler: threeHandler,
-      transitionType: TransitionType.cupertino,
-    );
-    router.define(
-      RoutesPath.fourPath,
-      handler: fourHandler,
-      transitionType: TransitionType.cupertino,
-    );
-    router.define(
-      RoutesPath.homePath,
-      handler: homeHandler,
-      transitionType: TransitionType.cupertino,
-    );
+
     router.define(
       RoutesPath.AboutUsPath,
       handler: aboutUsHandler,

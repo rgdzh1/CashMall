@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
-    private String linkParameter;
+    private String linkParameter;// 这个参数是从Flutter传递过来的
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
