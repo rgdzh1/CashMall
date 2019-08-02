@@ -1,6 +1,13 @@
 import 'package:CashMall/cashmall.dart';
 
-class ChangeAccountPasswordCodePage extends StatelessWidget {
+class ChangeAccountPasswordCodePage extends StatefulWidget {
+  @override
+  _ChangeAccountPasswordCodePageState createState() =>
+      _ChangeAccountPasswordCodePageState();
+}
+
+class _ChangeAccountPasswordCodePageState
+    extends BaseState<ChangeAccountPasswordCodePage> {
   staticRectangle(BuildContext context) {
     double count = 6;
     double setWidth = ScreenUtil.instance.setWidth(500);
@@ -82,8 +89,7 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
                               boolProvider.notifyListeners();
                               if (count == 0) {
                                 count = 60;
-                                getCodeDesc =
-                                    S.of(context).get_sms_code;
+                                getCodeDesc = S.of(context).get_sms_code;
                                 boolProvider.setStat(false);
                                 timer.cancel();
                               }
@@ -106,10 +112,10 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
                   ///print(value ?? "");
                   Fluttertoast.showToast(msg: value.toString());
                 },
+
                 ///输入完成时
                 onFilled: (value) {
                   Fluttertoast.showToast(msg: "输入完成" + value.toString());
-                  ///print('Your input is $value.');
                 },
               ),
               Padding(padding: EdgeInsets.all(ScreenUtil().setHeight(20))),
@@ -128,4 +134,10 @@ class ChangeAccountPasswordCodePage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool isShowDialog() => false;
+
+  @override
+  Future<T> showExitDialog<T>() => null;
 }

@@ -1,6 +1,11 @@
 import 'package:CashMall/cashmall.dart';
 
-class RegisterCenterPage extends StatelessWidget {
+class RegisterCenterPage extends StatefulWidget {
+  @override
+  _RegisterCenterPageState createState() => _RegisterCenterPageState();
+}
+
+class _RegisterCenterPageState extends BaseState<RegisterCenterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,4 +109,10 @@ class RegisterCenterPage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool isShowDialog() => false;
+
+  @override
+  Future<T> showExitDialog<T>() => null;
 }

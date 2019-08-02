@@ -1,6 +1,11 @@
 import 'package:CashMall/cashmall.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends BaseState<LoginPage> {
   void _textFieldChanged(String str) {
     print(str);
   }
@@ -124,7 +129,8 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Application.router.navigateTo(context, RoutesPath.changeAccountPasswordPath);
+                        Application.router.navigateTo(
+                            context, RoutesPath.changeAccountPasswordPath);
                       },
                     ),
                     InkWell(
@@ -162,6 +168,10 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
 
-//
+  @override
+  bool isShowDialog() => false;
+
+  @override
+  Future<T> showExitDialog<T>() => null;
+}

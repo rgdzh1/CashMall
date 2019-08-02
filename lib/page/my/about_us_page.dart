@@ -1,6 +1,12 @@
 import 'package:CashMall/cashmall.dart';
+import 'package:CashMall/page/base/base_state.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutUs extends StatefulWidget {
+  @override
+  _AboutUsState createState() => _AboutUsState();
+}
+
+class _AboutUsState extends BaseState<AboutUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,18 +66,13 @@ class AboutUs extends StatelessWidget {
       ),
     );
   }
-}
 
-//DecoratedBox(
-//decoration: BoxDecoration(
-//color: MyColors.white,
-//borderRadius: BorderRadius.circular(40),
-//),
-//child: Container(
-//
-//constraints: BoxConstraints.tightFor(
-//width: ScreenUtil().setWidth(670),
-//height: ScreenUtil().setHeight(919 - ScreenTools.bottomSafeHeight),
-//),
-//),
-//)
+  @override
+  bool isShowDialog() {
+    // TODO: implement isShowDialog
+    return false;
+  }
+
+  @override
+  Future<T> showExitDialog<T>() => null;
+}

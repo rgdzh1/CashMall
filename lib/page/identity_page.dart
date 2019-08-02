@@ -408,5 +408,5 @@ class _IdentityPageState extends BaseState<IdentityPage> {
   bool isShowDialog() => false;
 
   @override
-  Future<bool> showExitDialog<bool>() => null;
+  Future<T> showExitDialog<T>() => null;
 }

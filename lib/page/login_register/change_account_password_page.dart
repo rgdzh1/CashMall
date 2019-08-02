@@ -1,6 +1,12 @@
 import 'package:CashMall/cashmall.dart';
 
-class ChangeAccountPasswordPage extends StatelessWidget {
+class ChangeAccountPasswordPage extends StatefulWidget {
+  @override
+  _ChangeAccountPasswordPageState createState() =>
+      _ChangeAccountPasswordPageState();
+}
+
+class _ChangeAccountPasswordPageState extends BaseState<ChangeAccountPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,4 +87,10 @@ class ChangeAccountPasswordPage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool isShowDialog() => false;
+
+  @override
+  Future<T> showExitDialog<T>() => null;
 }
