@@ -1,14 +1,19 @@
 import 'package:CashMall/cashmall.dart';
 import 'package:flutter/cupertino.dart';
 
-class MainContainer extends BaseStatelessWidget {
+class MainContainer extends StatefulWidget {
+  String uniqueId;
   Map parames;
-  final String uniqueId;
 
-  MainContainer(this.parames, this.uniqueId) {
+  MainContainer(this.uniqueId, this.parames) {
     Application.uniqueId = uniqueId;
   }
 
+  @override
+  _MainContainerState createState() => _MainContainerState();
+}
+
+class _MainContainerState extends BaseState<MainContainer> {
   List<BottomNavigationBarItem> _getTabs(BuildContext context) {
     return [
       BottomNavigationBarItem(
@@ -48,35 +53,8 @@ class MainContainer extends BaseStatelessWidget {
   //记录导航点击事件得index
   static final Counter counter = new Counter();
 
-  Future<bool> showDilog() {
-
-    return showDialog(
-          context: _context,
-          builder: (context) => new AlertDialog(
-            title: new Text('提示'),
-            content: new Text('客官，确定退出app?'),
-            actions: <Widget>[
-              new FlatButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('放弃'),
-              ),
-              new FlatButton(
-                onPressed: () => FlutterBoost.singleton.closeCurPage({}),
-                child: new Text('退出'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
-
-  BuildContext _context;
-
   @override
-  Widget myBuild(BuildContext context) {
-    _context = context;
-
-    // print("看看计数器" + counter.count.toString());
+  Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 750.0, height: 1334.0)
       ..init(context);
     return ChangeNotifierProvider<Counter>.value(
@@ -108,14 +86,55 @@ class MainContainer extends BaseStatelessWidget {
   }
 
   @override
-  void setOnListenerBackPress(BuildContext context) {
-    var navigaterSettings = ModalRoute.of(context).settings;
-    FlutterBoost.containerManager
-        .containerStateOf(uniqueId)
-        .addBackPressedListener(() {
-      if (navigaterSettings.name.toString() == RoutesPath.homePath) {
-        showDilog();
-      }
-    });
+  bool isShowDialog() => true;
+
+  @override
+  Future<bool> showExitDialog<bool>() async {
+    return showCupertinoDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return new CupertinoAlertDialog(
+                title: new Text(
+                  "标题",
+                ),
+                content: new Text("内容"),
+                actions: <Widget>[
+                  new Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        right: BorderSide(
+                          color: MyColors.bg,
+                        ),
+                        top: BorderSide(
+                          color: MyColors.bg,
+                        ),
+                      ),
+                    ),
+                    child: FlatButton(
+                      child: new Text("确定"),
+                      onPressed: () {
+                        FlutterBoost.singleton.closeCurPage({});
+                      },
+                    ),
+                  ),
+                  new Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: MyColors.bg,
+                        ),
+                      ),
+                    ),
+                    child: FlatButton(
+                      child: new Text("取消"),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  )
+                ],
+              );
+            }) ??
+        false;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:CashMall/cashmall.dart';
 import 'package:flutter/material.dart';
 
 abstract class ListenerBackPress {
@@ -10,8 +11,8 @@ abstract class MyBuildWidget {
   Widget myBuild(BuildContext context);
 }
 
-abstract class BaseStatelessWidget
-    extends StatelessWidget with ListenerBackPress, MyBuildWidget {
+abstract class BaseStatelessWidget extends StatelessWidget
+    with ListenerBackPress, MyBuildWidget {
   @override
   Widget build(BuildContext context) {
     setOnListenerBackPress(context);

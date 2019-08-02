@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import 'cashmall.dart';
 
 void main() => runApp(MyApp());
@@ -14,7 +16,8 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     FlutterBoost.singleton.registerPageBuilders({
-      NativeKey.MainKey: (pageName, parames, uniqueid ) => MainContainer(parames,uniqueid),
+      NativeKey.MainKey: (pageName, parames, uniqueid) =>
+          MainContainer(uniqueid, parames),
     });
     FlutterBoost.handleOnStartPage();
     //创建fluro
@@ -33,9 +36,25 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
+        GlobalWidgetsLocalizations.delegate,
+        FallbackCupertinoLocalisationsDelegate()
       ],
       supportedLocales: S.delegate.supportedLocales,
     );
   }
+}
+
+class FallbackCupertinoLocalisationsDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalisationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) => true;
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      DefaultCupertinoLocalizations.load(locale);
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
 }

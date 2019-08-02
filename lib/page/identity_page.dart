@@ -1,8 +1,44 @@
 import 'package:CashMall/cashmall.dart';
 
-class IdentityPage extends BaseStatelessWidget {
+class IdentityPage extends StatefulWidget {
   @override
-  Widget myBuild(BuildContext context) {
+  _IdentityPageState createState() => _IdentityPageState();
+}
+
+class _IdentityPageState extends BaseState<IdentityPage> {
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    setOnListenerBackPress();
+  }
+
+  VoidCallback _backPressedListenerUnsub;
+
+  void setOnListenerBackPress() {
+    print("执行了吗,心累");
+    if (_backPressedListenerUnsub == null) {
+      _backPressedListenerUnsub = FlutterBoost.containerManager
+          .containerStateOf(Application.uniqueId)
+          .addBackPressedListener(() {
+        if (BoostContainer.of(context).onstage &&
+            ModalRoute.of(context).isCurrent) {
+          Navigator.of(context).pop();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _backPressedListenerUnsub?.call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    setOnListenerBackPress();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.white,
@@ -369,14 +405,8 @@ class IdentityPage extends BaseStatelessWidget {
   }
 
   @override
-  void setOnListenerBackPress(BuildContext context) {
-    FlutterBoost.containerManager
-        .containerStateOf(Application.uniqueId)
-        .addBackPressedListener(() {
-      if (!ModalRoute.of(context).isFirst) {
-//        FlutterBoost.singleton.closeCurPage({});
-        Navigator.of(context).pop();
-      }
-    });
-  }
+  bool isShowDialog() => false;
+
+  @override
+  Future<bool> showExitDialog<bool>() => null;
 }
