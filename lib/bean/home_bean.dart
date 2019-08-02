@@ -13,6 +13,7 @@ class HomeBean {
     return homeBeanBean;
   }
 
+
   Map toJson() => {
     "firstName": firstName,
     "lastName": lastName,
