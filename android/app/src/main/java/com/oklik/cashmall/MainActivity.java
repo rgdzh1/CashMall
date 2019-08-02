@@ -27,7 +27,9 @@ public class MainActivity extends BoostFlutterActivity {
 
     @Override
     public String getContainerName() {
+
         return NativeKey.MainKey;
+
     }
 
     @Override
